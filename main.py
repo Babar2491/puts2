@@ -1,3 +1,4 @@
+from fractions import Fraction
 from flask import Flask, request
 
 app = Flask(__name__)
@@ -10,32 +11,32 @@ def index():
 
 @app.route('/add')
 def addition():
-    value1 = request.args.get('A', default=0.0, type=float)
-    value2 = request.args.get('B', default=0.0, type=float)
+    value1 = request.args.get('A', type=float) or request.args.get('A', type=Fraction) or 0.000
+    value2 = request.args.get('B', type=float) or request.args.get('B', type=Fraction) or 0.000
     result = value1+value2
     return '%0.3f \n' % result
 
 
 @app.route('/subtract')
 def subtraction():
-    value1 = request.args.get('A', default=0.0, type=float)
-    value2 = request.args.get('B', default=0.0, type=float)
+    value1 = request.args.get('A', type=float) or request.args.get('A', type=Fraction) or 0.000
+    value2 = request.args.get('B', type=float) or request.args.get('B', type=Fraction) or 0.000
     result = value1-value2
     return '%0.3f \n' % result
 
 
 @app.route('/multiply')
 def multiplication():
-    value1 = request.args.get('A', default=0.0, type=float)
-    value2 = request.args.get('B', default=0.0, type=float)
+    value1 = request.args.get('A', type=float) or request.args.get('A', type=Fraction) or 0.000
+    value2 = request.args.get('B', type=float) or request.args.get('B', type=Fraction) or 0.000
     result = value1*value2
     return '%0.3f \n' % result
 
 
 @app.route('/divide')
 def division():
-    value1 = request.args.get('A', default=0.0, type=float)
-    value2 = request.args.get('B', default=0.0, type=float)
+    value1 = request.args.get('A', type=float) or request.args.get('A', type=Fraction) or 0.000
+    value2 = request.args.get('B', type=float) or request.args.get('B', type=Fraction) or 0.000
     result = value1/value2
     return '%0.3f \n' % result
 
